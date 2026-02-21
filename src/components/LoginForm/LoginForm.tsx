@@ -30,7 +30,7 @@ import {
     InputGroupTextarea,
 } from "@/components/ui/input-group"
 import { signIn } from "next-auth/react"
-import { useParams, useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 const formSchema = z.object({
@@ -38,10 +38,8 @@ const formSchema = z.object({
     password: z.string().nonempty('password is required')
 })
 type FormData = z.infer<typeof formSchema>
-export function LoginForm() {
+export function LoginForm({ redirectURL }: { redirectURL?: string | null }) {
     const [isloading, setisloading] = useState(false);
-const searchParams = useSearchParams()
-const redirectURL = searchParams.get("url")
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
