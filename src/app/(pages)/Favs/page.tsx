@@ -3,6 +3,8 @@ import Link from "next/link"
 import FavsButton from "@/components/Wishlist/FavsButton"
 import { getWishlist } from "@/actions/whitlistactions"
 
+export const dynamic = 'force-dynamic'
+
 export default async function FavsPage() {
 
   const wishlistData = await getWishlist()
